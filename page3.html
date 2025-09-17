@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Bristi 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff69b4, #000000);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #4b0082, #8a2be2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 1s ease;
+    }
+
+    .popup img {
+      width: 250px;
+      border-radius: 10px;
+      animation: popScale 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes popScale {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .rainbow {
+      font-size: 48px;
+      font-weight: bold;
+      color: gold;
+      margin-top: 20px;
+    }
+
+    /* Poem */
+    .poem-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px auto;
+      width: 90%;
+    }
+
+    .poem {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 18px;
+      line-height: 1.6;
+      white-space: pre-line;
+      color: #90D5FF;
+      flex: 1;
+    }
+
+    .poem-side-img {
+      width: 180px;
+      border-radius: 10px;
+    }
+
+    .thanks {
+      font-size: 24px;
+      margin: 20px;
+      color: white;
+    }
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+
+    .heart::after,
+    .heart::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% { top: -10%; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 20px;
+      top: -20px;
+      opacity: 0.9;
+      transform: rotate(15deg);
+      animation: fallConfetti linear forwards;
+      z-index: 10000;
+    }
+
+    @keyframes fallConfetti {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Audio -->
+  <audio autoplay loop>
+    <source src="bday audio.mpeg" type="audio/mpeg">
+  </audio>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <h1 class="rainbow">🎂 🥳 HAPPY BIRTHDAY 🥳 🎂</h1>
+    <img src="B1.jpeg" alt="Birthday Girl">
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content" style="display: none;">
+    <h1 style="font-family: Stencil, sans-serif;" class="rainbow">🎂 🥳 HAPPY BIRTHDAY 🥳 🎂</h1>
+
+    <div class="blue-roses">
+      <img src="blu rose.jpeg" alt="Blue Rose" width="250">
+      <img src="B2.jpeg" alt="Birthday Girl" width="250">
+      <img src="blu rose.jpeg" alt="Blue Rose" width="250">
+    </div>
+
+    <div class="poem-container">
+      <img src="L1.jpg" alt="Decor Left" class="poem-side-img">
+      <div class="poem">
+I see a new dawn with you,  
+A Love that's constant strong and true  
+Each year with you is better than the last  
+A beautiful future built on our past  
+May your day be filled with joy and delight  
+And our love continue to burn ever so bright  
+May your cake be sweet, your gifts be grand  
+With happiness and love on every hand  
+Here's to laughter and lots of memories to make  
+A wonderful day for goodness sake!  
+Happy Birthday Bubu♡
+      </div>
+      <img src="L2.jpg" alt="Decor Right" class="poem-side-img">
+    </div>
+
+    <div class="thanks">
+      Thanks for coming and staying in my life 💖
+    </div>
+  </div>
+
+  <script>
+    // Falling Hearts (continuous)
+    setInterval(function () {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => { heart.remove(); }, 5000);
+    }, 300);
+
+    // Confetti Generator (only for popup)
+    function launchConfetti() {
+      const colors = ["#ff0", "#ff1493", "#00f", "#0f0", "#ff4500", "#00ced1"];
+      for (let i = 0; i < 30; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.animationDuration = (3 + Math.random() * 2) + "s";
+        confetti.style.transform = "rotate(" + (Math.random() * 360) + "deg)";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => { confetti.remove(); }, 5000);
+      }
+    }
+
+    // Launch confetti while popup is showing
+    let confettiInterval = setInterval(launchConfetti, 400);
+
+    // Hide popup after 5 seconds
+    setTimeout(function () {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+      clearInterval(confettiInterval); // stop confetti after popup
+    }, 5000);
+  </script>
+</body>
+</html>
+
